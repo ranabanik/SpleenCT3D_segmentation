@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85601fbc-d068-417b-8a7c-bf35cc2750e0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/3D-UNet-PyTorch/src/model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/Train.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/Train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +31,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/3D-UNet-PyTorch" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1YeAYsE6SeIxFj4DGJKpdvQ07Kl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -43,7 +43,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/centers.png" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -180,6 +180,7 @@
       <workItem from="1583689842662" duration="31052000" />
       <workItem from="1583733824210" duration="3340000" />
       <workItem from="1583776774341" duration="5387000" />
+      <workItem from="1583787971108" duration="32000" />
     </task>
     <servers />
   </component>
