@@ -59,7 +59,7 @@ Minimum intensity -1024
 0039.nii.gz 988 -1024
 0040.nii.gz 1092 -863
 
-
+lowest spleen in number 10, total num of spleen voxels = 53869
 """
 import os
 from glob import glob
@@ -67,7 +67,7 @@ from tqdm import tqdm
 import nibabel as nib
 import numpy as np
 import matplotlib.pyplot as plt
-from Utility import get_paired_patch
+from Utility import get_paired_patch, get_paired_patch2D
 import cv2  # for clustering
 import h5py
 trainDir = r'C:\StorageDriveAll\Data\Assignment3\Training'
@@ -83,7 +83,7 @@ if __name__ != '__main__':
 with open(os.path.join(trainFileList), 'r') as f:
     filenames = f.readlines()
 filenames = [item.strip() for item in filenames]
-# print(len(filenames)) #30
+print(len(filenames)) #30
 if __name__ != '__main__':
     differentLabelImage = []
     howmanydiff = 0
@@ -240,7 +240,7 @@ if __name__ != '__main__':
     #     # print(mask.shape)
         ct_size = (64, 64, 8)
         mask_size = (32, 32, 8)
-        ctPatch, maskPatch = get_paired_patch(ct, ct_size, mask, mask_size, 5000)
+        ctPatch, maskPatch = get_paired_patch(ct, ct_size, mask, mask_size, 100)
         # print(np.shape(ctPatch))
         # print(np.shape(maskPatch))
         # if (np.shape(ctPatch) != ct_size) or (np.shape(maskPatch) != mask_size):
@@ -254,7 +254,7 @@ if __name__ != '__main__':
     #     # ind += 1
     #     # if ind == 2:
     #     #     break
-    hpath = os.path.join(trainDir, 'SpleenData.h5')
+    hpath = os.path.join(trainDir, 'SpleenData100.h5')
     with h5py.File(hpath, 'w') as f:
         f['img'] = trainCT
         f['mask'] = trainMask
@@ -356,7 +356,7 @@ if __name__ != '__main__':
     A[np.where(A > 2000)] = np.random.randint(-150, -90)
     CT[26, :, :, :, :] = A
     f.close()
-if __name__ == '__main__':
+if __name__ != '__main__':
     trainPath = glob(os.path.join(trainDir, '*.h5'))[0]
     # print(trainPath)
     f = h5py.File(trainPath, 'r')
@@ -423,3 +423,111 @@ if __name__ != '__main__':
     f = h5py.File(fpath, 'r+')
     data = f['test']
     print(data[1, :])
+
+if __name__ != '__main__':
+    """taking 2D images"""
+    ct = nib.load(os.path.join(trainImageDir, os.path.basename(trainImageDir) + filenames[1])).get_data()
+    mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + filenames[1])).get_data()
+    print(filenames[3])
+    mask[np.where(mask!=1)] = 0
+    numPat = np.int(np.sum(mask)/100)
+    # print(get_paired_patch2D(mask))
+    # foreground = np.array(np.where(mask == 1))
+    # centers = foreground[:, np.random.permutation(foreground.shape[1])[:5000]]
+    # print(centers[2, :])
+    # plt.plot(centers[2, :])
+    # plt.show()
+    ct_size = (128, 128, 3)
+    mask_size = (128, 128, 3)
+    trainCT, trainMask = get_paired_patch2D(ct, ct_size, mask, mask_size, numPat)
+    print(np.shape(trainCT))
+    print(np.shape(trainMask))
+    trainMask = np.array(trainMask)
+    demoCT = trainMask[405, :, :, 2]
+    plt.imshow(demoCT)
+    plt.show()
+
+if __name__ == '__main__':
+    # fInd = filenames[23]
+    # print(filenames[fInd])
+    trainCT = []
+    trainMask = []
+    # trainCT = np.empty_like()
+    # trainMask  = np.empty_like()
+    # ind = 0
+    for fInd in filenames:
+        print(fInd)
+        ct = nib.load(os.path.join(trainImageDir, os.path.basename(trainImageDir) + fInd)).get_data()
+        #     print(ct.shape)
+        mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + fInd)).get_data()
+        mask[np.where(mask != 1)] = 0
+        # numPat = np.int(np.sum(mask)/100)
+        # print(numPat)
+        # print(mask.shape, "mask")
+        #     # plt.imshow(mask[:,:,-1], cmap='gray')
+        #     # plt.show()
+        #     # print(mask.shape)
+        ct_size = (128, 128, 3)
+        mask_size = (128, 128, 3)
+        ctPatch, maskPatch = get_paired_patch2D(ct, ct_size, mask, mask_size, 1000)
+        # print(np.shape(ctPatch))
+        # print(np.shape(maskPatch))
+        # if (np.shape(ctPatch) != ct_size) or (np.shape(maskPatch) != mask_size):
+        #     print(np.shape(ctPatch))
+        #     print(fInd)
+        #     break
+        # ctPatch = np.array(ctPatch).squeeze(0)
+        # maskPatch = np.array(maskPatch).squeeze(0)
+
+        trainCT.append(ctPatch)
+        trainMask.append(maskPatch)
+        # print("error free!")
+        print("Train input shape:", np.shape(trainCT))
+        print("Train mask shape:", np.shape(trainMask))
+    #     # ind += 1
+    #     # if ind == 2:
+    #     #     break
+    hpath = os.path.join(trainDir, 'SpleenData2D.h5')
+    with h5py.File(hpath, 'w') as f:
+        f['img'] = trainCT
+        f['mask'] = trainMask
+    # print(mrPatch[0].shape, maskPatch[0].shape)
+    # mrPatch = np.array(mrPatch); maskPatch = np.array(maskPatch)
+    # fig, ax = plt.subplots(1, 2, figsize=(64, 20))
+    # ax[0].imshow(mrPatch[258, :, :, 2], cmap='gray')
+    # ax[1].imshow(maskPatch[258, :, :, 2], cmap='gray')
+    # plt.show()
+
+    # print(get_paired_patch.__annotations__)
+
+if __name__ != '__main__':
+    totvox = []
+    totspl = []
+    splrat = []
+    ind = 0
+    for fInd in filenames:
+        print(fInd)
+        mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + fInd)).get_data()
+        mask[np.where(mask != 1)] = 0
+        # print(np.sum(mask))
+        # print(np.size(mask))
+        totvox.append(np.size(mask))
+        totspl.append(np.sum(mask))
+        splrat.append((np.sum(mask)/np.size(mask)*100))
+        # ind += 1
+        # if ind == 2:
+        #     break
+
+    fig, ax = plt.subplots(2,1, figsize=(20, 10))
+    ax[0].plot(totvox, 'b', linewidth=1, label='#total voxels')
+    ax[0].plot(totspl, 'r', linewidth=1, label='#spleen voxels')
+    ax[1].plot(splrat, 'g', linewidth=1, label='Ratio of spleen')
+    ax[0].grid()
+    ax[1].grid()
+    leg0 = ax[0].legend(fontsize=20)
+    leg1 = ax[1].legend(fontsize=20)
+    plt.show()
+
+
+
+
