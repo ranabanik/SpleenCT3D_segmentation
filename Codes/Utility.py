@@ -1,5 +1,10 @@
 import numpy as np
+import torch
+from random import gauss
+from torch.utils import data
+
 np.random.seed(101)
+
 def get_paired_patch(mr, mr_patch_size, mask, mask_patch_size, nPatches) -> 'List':  # MR, patchsize
     """
     :param mr: MR image 3D
@@ -22,8 +27,8 @@ def get_paired_patch(mr, mr_patch_size, mask, mask_patch_size, nPatches) -> 'Lis
     bottom = 0
     top = 0
     mid = 0
-    for i in range(centers.shape[1]):
-        if centers[0, i] < int(mr_patch_size[0]/2):
+    for i in range(centers.shape[1]): # number of centers
+        if centers[0, i] < int(mr_patch_size[0]/2): # 64
             centers[0, i] = int(mr_patch_size[0]/2)
             # top += 1
         elif centers[0, i] > int(mr.shape[0] - mr_patch_size[0]/2):
@@ -72,3 +77,86 @@ def get_paired_patch(mr, mr_patch_size, mask, mask_patch_size, nPatches) -> 'Lis
     # print("Bottom:", bottom)
     # print("Mid", mid)
     return mr_patch, mask_patch  # centers
+
+def padzero(vector, pad_width, iaxis, kwargs):
+    vector[:pad_width[0]] = 0
+    vector[-pad_width[1]:] = 0
+    return vector
+
+class SpleenDataset(data.Dataset):
+    def __init__(self, CT, Mask):  # todo: how many subMR should be in one input?? shape?
+        self.CT = CT
+        self.Mask = Mask
+
+    def getSWN(self, img, x, y):  # soft window normalization
+        #         x = 10;y=10
+        L = gauss(40, x)
+        W = gauss(200, y)
+        #         print(L, W)
+        W = abs(W)
+        maxThr = L + W
+        minThr = L - W
+        img[img > maxThr] = maxThr
+        img[img < minThr] = minThr
+        img = 255 * ((img - minThr) / (maxThr - minThr))
+        return img
+
+    def __len__(self):
+        return len(self.CT)
+
+    def __getitem__(self, item):
+        #         CT = self.CT[item]
+        CT = self.getSWN(self.CT[item], 10, 10)
+        CT = torch.tensor(CT)
+        CT = CT.unsqueeze(0)  # (64, 64, 8) -> (1, 64, 64, 8) creating channel/filter
+        Mask = self.Mask[item]
+        Mask = torch.tensor(Mask)
+        Mask = Mask.unsqueeze(0)
+        return CT, Mask
+
+def get_paired_patch2D(img, imgSize, msk, mskSize, nPatches):
+    """
+    :param img:
+    :param imgSize:
+    :param msk:
+    :param mskSize:
+    :param nPatches:
+    :return:
+    """
+    foreground = np.array(np.where(msk == 1))
+    centers = foreground[:, np.random.permutation(foreground.shape[1])[:nPatches]]
+    img_patch = []
+    msk_patch = []
+
+    for i in range(centers.shape[1]): # number of centers
+        if centers[0, i] < int(imgSize[0]/2): # 64
+            centers[0, i] = int(imgSize[0]/2)
+            # top += 1
+        elif centers[0, i] > int(img.shape[0] - imgSize[0]/2):
+            centers[0, i] = int(img.shape[0] - imgSize[0]/2)
+
+        if centers[1, i] < int(imgSize[1] / 2):
+            centers[1, i] = int(imgSize[1] / 2)
+            # top += 1
+        elif centers[1, i] > int(img.shape[1] - imgSize[1] / 2):
+            centers[1, i] = int(img.shape[1] - imgSize[1] / 2)
+
+        if centers[2, i] == img.shape[2]:
+            centers[2,i] = img.shape[2] - 1
+        elif centers[2, i] == 0:
+            centers[2, i] = 1
+
+        patch1 = img[(centers[0, i] - np.int(imgSize[0] / 2)):(centers[0, i] + np.int(imgSize[0] / 2)),
+                 (centers[1, i] - np.int(imgSize[1] / 2)):(centers[1, i] + np.int(imgSize[1] / 2)),
+                 (centers[2, i] - 1):(centers[2, i] + 2)]
+        # print(np.shape(patch1))
+        img_patch.append(patch1)
+
+        patch2 = msk[(centers[0, i] - np.int(mskSize[0] / 2)):(centers[0, i] + np.int(mskSize[0] / 2)),
+                 (centers[1, i] - np.int(mskSize[1] / 2)):(centers[1, i] + np.int(mskSize[1] / 2)),
+                 (centers[2, i] - 1):(centers[2, i] + 2)]
+        # print(np.array(patch).shape)
+        # print(np.shape(patch2))
+        msk_patch.append(patch2)
+
+    return img_patch, msk_patch
