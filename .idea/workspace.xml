@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85601fbc-d068-417b-8a7c-bf35cc2750e0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Codes/Train.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/Train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codes/PrepareTestData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +45,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Codes/PrepareTestData.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager" selected="Python.model">
+  <component name="RunManager" selected="Python.PrepareTestData">
     <configuration name="EDA" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EDA_Spleen3D" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -67,6 +69,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EDA.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PrepareTestData" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EDA_Spleen3D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\ranab\Miniconda3\envs\py36\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/PrepareTestData.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,6 +165,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.PrepareTestData" />
+      <item itemvalue="Python.EDA" />
+      <item itemvalue="Python.model" />
+      <item itemvalue="Python.Train" />
+      <item itemvalue="Python.Utility" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.model" />
@@ -181,77 +212,95 @@
       <workItem from="1583733824210" duration="3340000" />
       <workItem from="1583776774341" duration="5387000" />
       <workItem from="1583787971108" duration="32000" />
+      <workItem from="1584996222211" duration="982000" />
+      <workItem from="1584998126152" duration="4155000" />
+      <workItem from="1585004396274" duration="8188000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/3D-UNet-PyTorch" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="2472" y="199" key="#Inspections" timestamp="1583615292746">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2472" y="199" key="#Inspections/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583615292746" />
-    <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583299034047">
+    <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584996472583">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583299034047" />
-    <state x="549" y="188" key="FileChooserDialogImpl" timestamp="1583649753689">
+    <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1584996472583" />
+    <state x="549" y="188" key="FileChooserDialogImpl" timestamp="1585012152784">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="188" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583557398610" />
     <state x="2606" y="235" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583633513082" />
-    <state x="549" y="188" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1583649753689" />
-    <state width="1493" height="174" key="GridCell.Tab.0.bottom" timestamp="1583784034269">
+    <state x="549" y="188" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1585012152784" />
+    <state width="973" height="147" key="GridCell.Tab.0.bottom" timestamp="1585012561337">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583737380991" />
     <state width="1877" height="354" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1493" height="174" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1583784034269" />
-    <state width="1493" height="174" key="GridCell.Tab.0.center" timestamp="1583784034269">
+    <state width="973" height="147" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1585012561337" />
+    <state width="973" height="147" key="GridCell.Tab.0.center" timestamp="1585012561337">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583737380991" />
     <state width="1877" height="354" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1493" height="174" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1583784034269" />
-    <state width="1493" height="174" key="GridCell.Tab.0.left" timestamp="1583784034269">
+    <state width="973" height="147" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1585012561337" />
+    <state width="973" height="147" key="GridCell.Tab.0.left" timestamp="1585012561337">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583737380991" />
     <state width="1877" height="354" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509679" />
-    <state width="1493" height="174" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1583784034269" />
-    <state width="1493" height="174" key="GridCell.Tab.0.right" timestamp="1583784034269">
+    <state width="973" height="147" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1585012561337" />
+    <state width="973" height="147" key="GridCell.Tab.0.right" timestamp="1585012561337">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583737380991" />
     <state width="1877" height="354" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1493" height="174" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1583784034269" />
-    <state width="1877" height="354" key="GridCell.Tab.1.bottom" timestamp="1583731509680">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="973" height="147" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1585012561337" />
+    <state width="788" height="267" key="GridCell.Tab.1.bottom" timestamp="1585008804286">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1877" height="354" key="GridCell.Tab.1.center" timestamp="1583731509680">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="788" height="267" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
+    <state width="788" height="267" key="GridCell.Tab.1.center" timestamp="1585008804286">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1877" height="354" key="GridCell.Tab.1.left" timestamp="1583731509680">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="788" height="267" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
+    <state width="788" height="267" key="GridCell.Tab.1.left" timestamp="1585008804286">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state width="1877" height="354" key="GridCell.Tab.1.right" timestamp="1583731509680">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="788" height="267" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
+    <state width="788" height="267" key="GridCell.Tab.1.right" timestamp="1585008804286">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
-    <state x="2381" y="183" key="SettingsEditor" timestamp="1583712219585">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="788" height="267" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
+    <state x="369" y="146" key="SettingsEditor" timestamp="1584996303816">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="2381" y="183" key="SettingsEditor/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583712219585" />
-    <state x="465" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1583787133102">
+    <state x="369" y="146" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1584996303816" />
+    <state x="465" y="258" key="com.intellij.ide.util.TipDialog" timestamp="1585004397212">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="1959" y="359" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583689848334" />
     <state x="2501" y="323" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583733829224" />
-    <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1583787133102" />
+    <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1585004397212" />
+    <state x="320" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585010053542">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="320" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1585010053542" />
     <state x="1920" y="0" width="778" height="535" maximized="true" key="dock-window-1" timestamp="1583552551733">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -264,6 +313,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$Utility.coverage" NAME="Utility Coverage Results" MODIFIED="1583615245358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$PrepareTestData.coverage" NAME="PrepareTestData Coverage Results" MODIFIED="1585012561319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$EDA.coverage" NAME="EDA Coverage Results" MODIFIED="1583734202875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$Train.coverage" NAME="Train Coverage Results" MODIFIED="1583736041913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$model.coverage" NAME="model Coverage Results" MODIFIED="1583781523753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
