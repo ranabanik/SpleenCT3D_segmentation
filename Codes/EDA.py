@@ -229,7 +229,7 @@ if __name__ != '__main__':
     trainMask = []
     # ind = 0
     for fInd in filenames:
-        print(fInd)
+        print(fInd[:-7])
         ct = nib.load(os.path.join(trainImageDir, os.path.basename(trainImageDir) + fInd)).get_data()
     #     print(ct.shape)
         mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + fInd)).get_data()
@@ -266,6 +266,40 @@ if __name__ != '__main__':
     # plt.show()
 
     # print(get_paired_patch.__annotations__)
+
+if __name__ != '__main__':
+    imgDim = [512, 512]
+    step = 256
+    nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
+    hpath = os.path.join(trainDir, 'SpleenTilesNonOverLap.h5')
+    with h5py.File(hpath, 'w') as f:
+        for fInd in filenames:
+            print(fInd[:-7])
+            subCT = []
+            subMask = []
+            ct = nib.load(os.path.join(trainImageDir, os.path.basename(trainImageDir) + fInd)).get_data()
+            #     print(ct.shape)
+            mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + fInd)).get_data()
+            mask[np.where(mask != 1)] = 0
+            for axi in range(ct.shape[2]):
+                for cor in range(0, ct.shape[0], step):
+                    for sag in range(0, ct.shape[1], step):
+                        # print(cor, sag, axi)
+                        img = ct[cor:cor + step, sag:sag + step, axi]
+                        subCT.append(img)
+                        msk = mask[cor:cor + step, sag:sag + step, axi]
+                        subMask.append(msk)
+            imgID = fInd[:-7]+'img'
+            mskID = fInd[:-7]+'msk'
+            f[imgID] = subCT
+            f[mskID] = subMask
+
+if __name__ == '__main__':
+    trainPath = glob(os.path.join(trainDir, '*.h5'))[0]
+    print(trainPath)
+    f = h5py.File(trainPath, 'r')
+    print(f.keys())
+
 if __name__ != '__main__':
     """
     Smallest mask is: DET0028301_avg.nii.gz 
@@ -358,7 +392,7 @@ if __name__ != '__main__':
     f.close()
 if __name__ != '__main__':
     trainPath = glob(os.path.join(trainDir, '*.h5'))[0]
-    # print(trainPath)
+    print(trainPath)
     f = h5py.File(trainPath, 'r')
     CT = f['img']
     mask = f['mask']
@@ -447,7 +481,7 @@ if __name__ != '__main__':
     plt.imshow(demoCT)
     plt.show()
 
-if __name__ == '__main__':
+if __name__ != '__main__':
     # fInd = filenames[23]
     # print(filenames[fInd])
     trainCT = []
