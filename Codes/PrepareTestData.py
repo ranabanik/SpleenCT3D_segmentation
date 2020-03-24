@@ -1,4 +1,6 @@
 # rana.banik@vanderbilt.edu
+# works for non-overlapping tiles: with step size 64, 128, 256
+# and image size multiples of 64 in coronal and saggital
 """pseudocode
     for tl -> #allTiles:
         if tl divisible by #TilesPerSlice:
