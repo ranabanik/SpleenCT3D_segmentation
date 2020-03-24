@@ -109,10 +109,14 @@ class SpleenDataset(data.Dataset):
         CT = self.getSWN(self.CT[item], 10, 10)
         CT = torch.tensor(CT)
         CT = CT.unsqueeze(0)  # (64, 64, 8) -> (1, 64, 64, 8) creating channel/filter
-        Mask = self.Mask[item]
-        Mask = torch.tensor(Mask)
-        Mask = Mask.unsqueeze(0)
-        return CT, Mask
+        if self.Mask is not None: # in test cases
+            Mask = self.Mask[item]
+            Mask = torch.tensor(Mask)
+            Mask = Mask.unsqueeze(0)
+            return CT, Mask
+
+        else:
+            return CT
 
 def get_paired_patch2D(img, imgSize, msk, mskSize, nPatches):
     """
@@ -160,3 +164,17 @@ def get_paired_patch2D(img, imgSize, msk, mskSize, nPatches):
         msk_patch.append(patch2)
 
     return img_patch, msk_patch
+
+def dice_loss(input, target):
+    """Dice loss.
+    :param input: The input (predicted)
+    :param target:  The target (ground truth)
+    :returns: the Dice score between 0 and 1.
+    """
+    eps = 0.0001
+    iflat = input.view(-1)
+    tflat = target.view(-1)
+    intersection = (iflat * tflat).sum()
+    union = iflat.sum() + tflat.sum()
+    dice = (2.0 * intersection + eps) / (union + eps)
+    return 1 - dice

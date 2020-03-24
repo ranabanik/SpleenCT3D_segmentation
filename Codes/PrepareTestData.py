@@ -93,7 +93,7 @@ if __name__ != '__main__': # comment out this line if you want to see the stitch
 
     # break
 
-"""check the h5 py file"""
+"""check the h5py file"""
 f = h5py.File(hpath, 'r')
 # print(f.keys())
 CT = f['img0080']
