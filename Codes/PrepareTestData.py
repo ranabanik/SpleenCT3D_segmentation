@@ -30,25 +30,21 @@ step = 128
 nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
 
 # print(nTilesPerSlice)
-for i in imgPath:
-    brokenCT = []
-    ct = nib.load(i).get_data()
-    print(ct.shape, '\n')
-    for axi in range(ct.shape[2]):
-        for cor in range(0, ct.shape[0], step):
-            for sag in range(0, ct.shape[1], step):
-                # print(cor, sag, axi)
-                img = ct[cor:cor + step, sag:sag + step, axi]
-                brokenCT.append(img)
-    # break
-    # print(np.shape(img)) #(256, 256)
-    # print(np.shape(brokenCT)) #(552, 256, 256)
-if __name__ == '__main__':
-    """to save the 2D tiles"""
-    ID = i[48:-7]
-    # print(ID, type(ID))
+if __name__ != '__main__':
     with h5py.File(hpath, 'w') as f:
-        f[ID] = brokenCT
+        for i in imgPath:
+            brokenCT = []
+            ct = nib.load(i).get_data()
+            print(ct.shape, '\n')
+            for axi in range(ct.shape[2]):
+                for cor in range(0, ct.shape[0], step):
+                    for sag in range(0, ct.shape[1], step):
+                        # print(cor, sag, axi)
+                        img = ct[cor:cor + step, sag:sag + step, axi]
+                        brokenCT.append(img)
+
+            ID = i[48:-7]
+            f[ID] = brokenCT
 
 if __name__ != '__main__': # comment out this line if you want to see the stitching
     brokenCT = np.array(brokenCT)
@@ -96,4 +92,10 @@ if __name__ != '__main__': # comment out this line if you want to see the stitch
         plt.show()
 
     # break
+
+"""check the h5 py file"""
+f = h5py.File(hpath, 'r')
+# print(f.keys())
+CT = f['img0080']
+print(np.shape(CT))
 
