@@ -267,18 +267,22 @@ if __name__ != '__main__':
 
     # print(get_paired_patch.__annotations__)
 
-if __name__ != '__main__':
+if __name__ == '__main__':
+    subCT = []
+    subMask = []
     imgDim = [512, 512]
     step = 256
     nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
     hpath = os.path.join(trainDir, 'SpleenTilesNonOverLap.h5')
+    totSlice = 0
     with h5py.File(hpath, 'w') as f:
         for fInd in filenames:
             print(fInd[:-7])
-            subCT = []
-            subMask = []
+            # subCT = []
+            # subMask = []
             ct = nib.load(os.path.join(trainImageDir, os.path.basename(trainImageDir) + fInd)).get_data()
             #     print(ct.shape)
+            totSlice += ct.shape[2]
             mask = nib.load(os.path.join(trainLabelDir, os.path.basename(trainLabelDir) + fInd)).get_data()
             mask[np.where(mask != 1)] = 0
             for axi in range(ct.shape[2]):
@@ -287,14 +291,17 @@ if __name__ != '__main__':
                         # print(cor, sag, axi)
                         img = ct[cor:cor + step, sag:sag + step, axi]
                         subCT.append(img)
+                        # print(np.shape(subCT))
                         msk = mask[cor:cor + step, sag:sag + step, axi]
                         subMask.append(msk)
-            imgID = fInd[:-7]+'img'
-            mskID = fInd[:-7]+'msk'
-            f[imgID] = subCT
-            f[mskID] = subMask
+        print("Total number of slices:", totSlice)
+                        # print(np.shape(subMask))
+            # imgID = fInd[:-7]+'img'
+            # mskID = fInd[:-7]+'msk'
+        f['img'] = subCT
+        f['msk'] = subMask
 
-if __name__ == '__main__':
+if __name__ != '__main__':
     trainPath = glob(os.path.join(trainDir, '*.h5'))[0]
     print(trainPath)
     f = h5py.File(trainPath, 'r')
