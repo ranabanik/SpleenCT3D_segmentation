@@ -17,16 +17,18 @@ import nibabel as nib
 from glob import glob
 import numpy as np
 import matplotlib.pyplot as plt
+import h5py
 
 imgDir = r'C:\StorageDriveAll\Data\Assignment3\Testing\img'
 imgPath = glob(os.path.join(imgDir, '*.gz'))
 # print(imgPath)
-
+hpath = os.path.join(imgDir, 'SpleenTest2DTiles.h5')
 demoImg = nib.load(imgPath[8]).get_data()
 imgDim = np.shape(demoImg)
 # print(imgDim, imgDim[0])
-step = 256
+step = 128
 nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
+
 # print(nTilesPerSlice)
 for i in imgPath:
     brokenCT = []
@@ -35,12 +37,20 @@ for i in imgPath:
     for axi in range(ct.shape[2]):
         for cor in range(0, ct.shape[0], step):
             for sag in range(0, ct.shape[1], step):
-                print(cor, sag, axi)
+                # print(cor, sag, axi)
                 img = ct[cor:cor + step, sag:sag + step, axi]
                 brokenCT.append(img)
-
+    # break
     # print(np.shape(img)) #(256, 256)
     # print(np.shape(brokenCT)) #(552, 256, 256)
+if __name__ == '__main__':
+    """to save the 2D tiles"""
+    ID = i[48:-7]
+    # print(ID, type(ID))
+    with h5py.File(hpath, 'w') as f:
+        f[ID] = brokenCT
+
+if __name__ != '__main__': # comment out this line if you want to see the stitching
     brokenCT = np.array(brokenCT)
     stichCT = np.zeros_like(ct)
     """this portions stiches the tiles back into 3D image"""
