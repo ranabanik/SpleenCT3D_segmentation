@@ -8,6 +8,7 @@ import numpy as np
 def weights_init(m):
     if isinstance(m, nn.Conv2d):
         m.weight = init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='leaky_relu')
+        m.weight = init.xavier_uniform_(m.weight, gain=np.sqrt(2.0))
         m.bias.data.fill_(0)
         # if m.bias is not None:
             # init.kaiming_uniform_(m.bias)
@@ -37,7 +38,7 @@ def conv_trans_block_2d(in_dim, out_dim, activation):
     "doubles the spatial dimension..."
     return nn.Sequential(
         # nn.ConvTranspose3d(in_dim, out_dim, kernel_size=3, stride=2, padding=1, output_padding=1),
-        nn.ConvTranspose2d(in_dim, out_dim, kernel_size=2, stride=2, padding=0, output_padding=0),
+        nn.ConvTranspose2d(in_dim, out_dim, kernel_size=2, stride=2, padding=0, output_padding=0), #2, 2, 0
         nn.BatchNorm2d(out_dim),
         activation)
 
@@ -53,7 +54,6 @@ def conv_block_2_2d(in_dim, out_dim, activation): #used in bridge
         nn.Conv2d(out_dim, out_dim, kernel_size=3, stride=1, padding=1),
         nn.BatchNorm2d(out_dim),)
 
-
 class UNet(nn.Module):
     def __init__(self, in_dim, out_dim, num_filters):
         """
@@ -67,8 +67,7 @@ class UNet(nn.Module):
         self.in_dim = in_dim
         self.out_dim = out_dim
         self.num_filters = num_filters
-        activation = nn.LeakyReLU(0.2, inplace=True)
-
+        activation = nn.ReLU(inplace=True) #LeakyRelu(0.2)
         # Down sampling
         # In every down sample block the number of filters double...
         self.down_1 = conv_block_2_2d(self.in_dim, self.num_filters, activation)
@@ -99,7 +98,7 @@ class UNet(nn.Module):
 
         # Output
         self.out = conv_block_2d(self.num_filters, out_dim, activation)
-        # self.last = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=(2, 2, 1), stride=(2, 2, 1))
+        self.last = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=1)
 
     def forward(self, x):
         # Down sampling
@@ -161,20 +160,20 @@ class UNet(nn.Module):
         out = self.out(up_4)  # ->
         # out = self.last(out)
         # out = F.sigmoid(out)
-        out = torch.sigmoid(out)
+        out = torch.sigmoid(self.last(out))
         return out
 
-# if __name__ == '__main__':
-#     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-#     model = UNet(in_dim=1, out_dim=1, num_filters=64).to(device)
-#     model.apply(weights_init)
-#     # print(model)
-#     inp = torch.Tensor(10, 1, 128, 128).to(device)
-#     print(inp.size())
-#     # inp.to(device)
-#     out = model(inp)
-#     print(out.size())
-#
+if __name__ == '__main__':
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = UNet(in_dim=1, out_dim=1, num_filters=32).to(device)
+    model.apply(weights_init)
+    # print(model)
+    inp = torch.Tensor(8, 1, 512, 512).to(device)
+    # print(inp.size())
+    inp.to(device)
+    out = model(inp)
+    print(out.size())
+
 # if __name__ != '__main__':
 #     encoder = models.vgg16() # .features
 #     print(encoder)
