@@ -99,7 +99,7 @@ if __name__ == '__main__':
         dsc = (2*commonArea.sum())/(result.sum()+mask.sum())
         diceList = np.append(diceList, dsc)
         print("Dice score", fInd, ":", dsc)
-
+        
     print(np.mean(diceList))
     print(np.median(diceList))
     print(np.std(diceList))
