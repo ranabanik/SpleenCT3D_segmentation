@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.init as init
-import torch.nn.functional as F
-from torchvision import models
 import numpy as np
 
 def weights_init(m):
@@ -163,16 +161,16 @@ class UNet(nn.Module):
         out = torch.sigmoid(self.last(out))
         return out
 
-if __name__ == '__main__':
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = UNet(in_dim=1, out_dim=1, num_filters=32).to(device)
-    model.apply(weights_init)
-    # print(model)
-    inp = torch.Tensor(8, 1, 512, 512).to(device)
-    # print(inp.size())
-    inp.to(device)
-    out = model(inp)
-    print(out.size())
+# if __name__ == '__main__':
+#     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+#     model = UNet(in_dim=1, out_dim=1, num_filters=32).to(device)
+#     model.apply(weights_init)
+#     # print(model)
+#     inp = torch.Tensor(8, 1, 512, 512).to(device)
+#     # print(inp.size())
+#     inp.to(device)
+#     out = model(inp)
+#     print(out.size())
 
 # if __name__ != '__main__':
 #     encoder = models.vgg16() # .features

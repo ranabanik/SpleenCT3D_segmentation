@@ -1,7 +1,11 @@
 import numpy as np
 import torch
+import torch.nn as nn
+from torchvision.transforms import ToTensor
 from random import gauss
 from torch.utils import data
+from PIL import Image
+from skimage.measure import label
 
 np.random.seed(101)
 
@@ -83,10 +87,11 @@ def padzero(vector, pad_width, iaxis, kwargs):
     vector[-pad_width[1]:] = 0
     return vector
 
-class SpleenDataset(data.Dataset):
-    def __init__(self, CT, Mask):  # todo: how many subMR should be in one input?? shape?
+class SpleenDataset2(data.Dataset):
+    def __init__(self, CT, Mask, transform=None):  # todo: how many subMR should be in one input?? shape?
         self.CT = CT
         self.Mask = Mask
+        self.transform = transform
 
     def getSWN(self, img, x, y):  # soft window normalization
         #         x = 10;y=10
@@ -105,13 +110,59 @@ class SpleenDataset(data.Dataset):
         return len(self.CT)
 
     def __getitem__(self, item):
+        CT = self.getSWN(self.CT[item], 10, 10)
+        # CT = np.concatenate((CT[:, :, np.newaxis], CT[:, :, np.newaxis], CT[:, :, np.newaxis]), axis=2)
+        CT = Image.fromarray(CT)
+        if self.Mask is not None:
+            Mask = Image.fromarray(np.uint8(255 * self.Mask[item]))
+            if self.transform is not None:  # in test cases
+                CT = self.transform(CT)
+                CT = CT.unsqueeze(0)  # (64, 64, 8) -> (1, 64, 64, 8) creating channel/filter
+                Mask = self.transform(Mask)
+                Mask = Mask.unsqueeze(0)
+            else: # we have mask but no transformation -> validation
+                CT = ToTensor()(CT)
+                CT = CT.unsqueeze(0)
+                Mask = ToTensor()(Mask)
+                Mask = Mask.unsqueeze(0)
+            return CT, Mask
+
+        else: # no mask
+            CT = ToTensor()(CT)
+            CT = CT.unsqueeze(0)
+            return CT
+
+class SpleenDataset(data.Dataset):
+    def __init__(self, CT, Mask):
+        self.CT = CT
+        self.Mask = Mask
+
+    def getSWN(self, img, x, y):  # soft window normalization
+        #         x = 10;y=10
+        L = gauss(40, x)
+        W = gauss(200, y)
+        #         print(L, W)
+        W = abs(W)
+        maxThr = L + W
+        minThr = L - W
+        img[img > maxThr] = maxThr
+        img[img < minThr] = minThr
+        img = ((img - minThr) / (maxThr - minThr))
+        return img
+
+    def __len__(self):
+        return len(self.CT)
+
+    def __getitem__(self, item):
         #         CT = self.CT[item]
         CT = self.getSWN(self.CT[item], 10, 10)
-        CT = torch.tensor(CT)
+        # CT = torch.tensor(CT)
+        CT = torch.from_numpy(CT.astype(np.float32))
         CT = CT.unsqueeze(0)  # (64, 64, 8) -> (1, 64, 64, 8) creating channel/filter
         if self.Mask is not None: # in test cases
             Mask = self.Mask[item]
-            Mask = torch.tensor(Mask)
+            # Mask = torch.tensor(Mask)
+            Mask = torch.from_numpy(Mask.astype(np.float32))
             Mask = Mask.unsqueeze(0)
             return CT, Mask
 
@@ -178,3 +229,23 @@ def dice_loss(input, target):
     union = iflat.sum() + tflat.sum()
     dice = (2.0 * intersection + eps) / (union + eps)
     return 1 - dice
+
+class DiceLoss(nn.Module):
+    def __init__(self):
+        super(DiceLoss, self).__init__()
+        self.smooth = 1.0
+
+    def forward(self, y_pred, y_true):
+        assert y_pred.size() == y_true.size()
+        y_pred = y_pred[:, 0].contiguous().view(-1)
+        y_true = y_true[:, 0].contiguous().view(-1)
+        intersection = (y_pred * y_true).sum()
+        dsc = (2. * intersection + self.smooth) / (
+            y_pred.sum() + y_true.sum() + self.smooth)
+        return 1. - dsc
+
+def getLargestCC(segmentation):
+    labels = label(segmentation)
+    assert( labels.max() != 0 ) # assume at least 1 CC
+    largestCC = labels == np.argmax(np.bincount(labels.flat)[1:])+1
+    return largestCC

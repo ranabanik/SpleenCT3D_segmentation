@@ -5,7 +5,7 @@ from glob import glob
 import pickle
 
 imgDir = r'/home/banikr2/PycharmProjects/SpleenCT3D_segmentation/Images'
-dataDir = r'/home/banikr2/PycharmProjects/SpleenCT3D_segmentation/2020-03-23-02-53-11'
+dataDir = r'/home/banikr2/PycharmProjects/SpleenCT3D_segmentation/2020-03-25-01-19-13'
 dataPath = glob(os.path.join(dataDir, '*.bin'))[0]
 # print(dataPath)
 

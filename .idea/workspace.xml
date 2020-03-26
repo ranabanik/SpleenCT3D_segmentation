@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85601fbc-d068-417b-8a7c-bf35cc2750e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/2020-03-25-01-19-13/2020-03-25-01-19-13_LogMetric.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2020-03-25-01-19-13/config.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codes/saveimage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/output.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/EDA_Spleen3D.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EDA_Spleen3D.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codes/EDA.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/EDA.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/LossAnalysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/LossAnalysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/PrepareTestData.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/PrepareTestData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/Train.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/Train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/Utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/Utility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codes/model2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/Codes/model2D.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +55,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Codes/EDA.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Python.EDA">
+  <component name="RunManager" selected="Python.Test">
     <configuration name="EDA" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EDA_Spleen3D" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,6 +88,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="LossAnalysis" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EDA_Spleen3D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/LossAnalysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="PrepareTestData" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="EDA_Spleen3D" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -85,7 +117,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\ranab\Miniconda3\envs\py36\python.exe" />
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spleen36/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -122,7 +154,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Train" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="EDA_Spleen3D" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,12 +162,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/Train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Train2" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EDA_Spleen3D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spleen36/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/Train2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,19 +242,67 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="model2D" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EDA_Spleen3D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spleen36/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/model2D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="saveimage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="EDA_Spleen3D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/spleen36/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Codes" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Codes/saveimage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.PrepareTestData" />
       <item itemvalue="Python.Test" />
       <item itemvalue="Python.Utility" />
+      <item itemvalue="Python.Train" />
+      <item itemvalue="Python.Train2" />
+      <item itemvalue="Python.saveimage" />
+      <item itemvalue="Python.model2D" />
       <item itemvalue="Python.EDA" />
       <item itemvalue="Python.model" />
-      <item itemvalue="Python.Train" />
+      <item itemvalue="Python.LossAnalysis" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.LossAnalysis" />
         <item itemvalue="Python.EDA" />
         <item itemvalue="Python.model" />
-        <item itemvalue="Python.Train" />
       </list>
     </recent_temporary>
   </component>
@@ -242,6 +344,8 @@
       <workItem from="1585016612452" duration="386000" />
       <workItem from="1585017636954" duration="5423000" />
       <workItem from="1585026880656" duration="1474000" />
+      <workItem from="1585030160940" duration="40166000" />
+      <workItem from="1585114294340" duration="35650000" />
     </task>
     <task id="LOCAL-00001" summary="to split 3D test images into 2D non-overlapping tiles and stitch back to 3D images.">
       <created>1585013437829</created>
@@ -263,6 +367,19 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/3D-UNet-PyTorch" />
@@ -276,88 +393,97 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2472" y="199" key="#Inspections/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583615292746" />
-    <state x="2199" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585027115614">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="429" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585102757020">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583299034047" />
     <state x="2199" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585027115614" />
     <state x="223" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1584996472583" />
-    <state x="429" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1585026718717" />
+    <state x="429" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1585102757020" />
     <state x="119" y="32" key="CommitChangelistDialog2" timestamp="1585015000822">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="119" y="32" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1585015000822" />
-    <state x="2606" y="235" width="495" height="513" key="FileChooserDialogImpl" timestamp="1585027112847">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="958" y="334" width="495" height="513" key="FileChooserDialogImpl" timestamp="1585155459830">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="549" y="188" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583557398610" />
     <state x="2606" y="235" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585027112847" />
     <state x="549" y="188" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1585012152784" />
-    <state x="958" y="334" width="495" height="513" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1585026715441" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1585028258684">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="958" y="334" width="495" height="513" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1585155459830" />
+    <state width="1201" height="362" key="GridCell.Tab.0.bottom" timestamp="1585235916436">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1493" height="135" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1585017194999" />
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585028258684" />
     <state width="973" height="147" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1585015196536" />
-    <state width="2447" height="620" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1585025606656" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1585028258684">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1201" height="362" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1585235916436" />
+    <state width="1201" height="362" key="GridCell.Tab.0.center" timestamp="1585235916436">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1493" height="135" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1585017194999" />
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585028258684" />
     <state width="973" height="147" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1585015196536" />
-    <state width="2447" height="620" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1585025606656" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1585028258684">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1201" height="362" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1585235916436" />
+    <state width="1201" height="362" key="GridCell.Tab.0.left" timestamp="1585235916434">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1493" height="135" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1585017194999" />
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585028258684" />
     <state width="973" height="147" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1585015196536" />
-    <state width="2447" height="620" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1585025606655" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1585028258684">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1201" height="362" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1585235916434" />
+    <state width="1201" height="362" key="GridCell.Tab.0.right" timestamp="1585235916436">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1493" height="135" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1585017194999" />
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585028258684" />
     <state width="973" height="147" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1585015196536" />
-    <state width="2447" height="620" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1585025606656" />
-    <state width="788" height="267" key="GridCell.Tab.1.bottom" timestamp="1585008804286">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1201" height="362" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1585235916436" />
+    <state width="2447" height="478" key="GridCell.Tab.1.bottom" timestamp="1585114284326">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
     <state width="788" height="267" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
-    <state width="788" height="267" key="GridCell.Tab.1.center" timestamp="1585008804286">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="2447" height="478" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1585114284326" />
+    <state width="2447" height="478" key="GridCell.Tab.1.center" timestamp="1585114284326">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
     <state width="788" height="267" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
-    <state width="788" height="267" key="GridCell.Tab.1.left" timestamp="1585008804286">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="2447" height="478" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1585114284326" />
+    <state width="2447" height="478" key="GridCell.Tab.1.left" timestamp="1585114284325">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
     <state width="788" height="267" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
-    <state width="788" height="267" key="GridCell.Tab.1.right" timestamp="1585008804286">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="2447" height="478" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1585114284325" />
+    <state width="2447" height="478" key="GridCell.Tab.1.right" timestamp="1585114284326">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1877" height="354" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583731509680" />
     <state width="788" height="267" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1585008804286" />
-    <state x="2381" y="183" key="SettingsEditor" timestamp="1585027088784">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="2447" height="478" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1585114284326" />
+    <state x="619" y="279" key="SettingsEditor" timestamp="1585234980499">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="2381" y="183" key="SettingsEditor/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1585027088784" />
     <state x="369" y="146" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1584996303816" />
-    <state x="619" y="279" key="SettingsEditor/67.27.2493.1413@67.27.2493.1413" timestamp="1585026700880" />
+    <state x="619" y="279" key="SettingsEditor/67.27.2493.1413@67.27.2493.1413" timestamp="1585234980499" />
     <state x="102" y="169" key="Vcs.Push.Dialog.v2" timestamp="1585015003465">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="102" y="169" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1585015003465" />
-    <state x="1959" y="359" key="com.intellij.ide.util.TipDialog" timestamp="1585016614750">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="623" height="707" key="XDebugger.FullValuePopup" timestamp="1585078192452">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="623" height="707" key="XDebugger.FullValuePopup/67.27.2493.1413@67.27.2493.1413" timestamp="1585078192452" />
+    <state x="118" y="497" key="com.intellij.ide.util.TipDialog" timestamp="1585114295149">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="1959" y="359" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1585016614750" />
     <state x="2501" y="323" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583733829224" />
     <state x="465" y="258" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1585004397212" />
+    <state x="118" y="497" key="com.intellij.ide.util.TipDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1585114295149" />
     <state x="320" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585010053542">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -366,23 +492,30 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="1920" y="0" width="778" height="535" maximized="true" key="dock-window-1/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583552551733" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1583735815182">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="767" y="323" width="1091" height="1109" key="search.everywhere.popup" timestamp="1585234986888">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1583735815182" />
     <state x="2459" y="226" width="840" height="848" key="search.everywhere.popup/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1583712226807" />
+    <state x="767" y="323" width="1091" height="1109" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1585234986888" />
     <state x="1661" y="646" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1585018384150">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="1661" y="646" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1585018384150" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EDA_Spleen3D$Utility.coverage" NAME="Utility Coverage Results" MODIFIED="1583615245358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$PrepareTestData.coverage" NAME="PrepareTestData Coverage Results" MODIFIED="1585017194988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
-    <SUITE FILE_PATH="coverage/EDA_Spleen3D$EDA.coverage" NAME="EDA Coverage Results" MODIFIED="1583734202875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$EDA.coverage" NAME="EDA Coverage Results" MODIFIED="1585028258669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
-    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$Test.coverage" NAME="Test Coverage Results" MODIFIED="1585025606645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$Utility.coverage" NAME="Utility Coverage Results" MODIFIED="1585081494528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$model.coverage" NAME="model Coverage Results" MODIFIED="1583781523753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$LossAnalysis.coverage" NAME="LossAnalysis Coverage Results" MODIFIED="1585145248330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$saveimage.coverage" NAME="saveimage Coverage Results" MODIFIED="1585171960321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/EDA_Spleen3D$Utility.coverage" NAME="Utility Coverage Results" MODIFIED="1583615245358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EDA_Spleen3D$Train.coverage" NAME="Train Coverage Results" MODIFIED="1583736041913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$EDA.coverage" NAME="EDA Coverage Results" MODIFIED="1585028258669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$model2D.coverage" NAME="model2D Coverage Results" MODIFIED="1585108331674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$Train2.coverage" NAME="Train2 Coverage Results" MODIFIED="1585117150663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/EDA_Spleen3D$EDA.coverage" NAME="EDA Coverage Results" MODIFIED="1583734202875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$Train.coverage" NAME="Train Coverage Results" MODIFIED="1585095931432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$PrepareTestData.coverage" NAME="PrepareTestData Coverage Results" MODIFIED="1585104653237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
+    <SUITE FILE_PATH="coverage/SpleenCT3D_segmentation$Test.coverage" NAME="Test Coverage Results" MODIFIED="1585235916424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Codes" />
   </component>
 </project>

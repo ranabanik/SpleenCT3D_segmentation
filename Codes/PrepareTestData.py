@@ -19,15 +19,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import h5py
 
-imgDir = r'C:\StorageDriveAll\Data\Assignment3\Testing\img'
-imgPath = glob(os.path.join(imgDir, '*.gz'))
-# print(imgPath)
-hpath = os.path.join(imgDir, 'SpleenTest2DTiles.h5')
-demoImg = nib.load(imgPath[8]).get_data()
-imgDim = np.shape(demoImg)
-# print(imgDim, imgDim[0])
-step = 128
-nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
+if __name__ != '__main__':
+    imgDir = r'C:\StorageDriveAll\Data\Assignment3\Testing\img'
+    imgPath = glob(os.path.join(imgDir, '*.gz'))
+    # print(imgPath)
+    hpath = os.path.join(imgDir, 'SpleenTest2DTiles.h5')
+    demoImg = nib.load(imgPath[8]).get_data()
+    imgDim = np.shape(demoImg)
+    # print(imgDim, imgDim[0])
+    step = 128
+    nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
 
 # print(nTilesPerSlice)
 if __name__ != '__main__':
@@ -93,9 +94,48 @@ if __name__ != '__main__': # comment out this line if you want to see the stitch
 
     # break
 
-"""check the h5py file"""
-f = h5py.File(hpath, 'r')
-# print(f.keys())
-CT = f['img0080']
-print(np.shape(CT))
+# """check the h5py file"""
+# f = h5py.File(hpath, 'r')
+# # print(f.keys())
+# CT = f['img0080']
+# print(np.shape(CT))
+
+if __name__ == '__main__':
+    trainDir = r'/media/banikr2/DATA/SpleenCTSegmentation/Training'
+    imgDir = os.path.join(trainDir, 'img')
+    labDir = os.path.join(trainDir, 'splabel')
+    trainFileList = r'/media/banikr2/DATA/SpleenCTSegmentation/Training/TrainList.txt'
+    with open(os.path.join(trainFileList), 'r') as f:
+        filenames = f.readlines()
+    filenames = [item.strip() for item in filenames]
+    # print(filenames)  # 30
+    subCT = []
+    subMask = []
+    imgDim = [512, 512]
+    step = 256
+    nTilesPerSlice = np.int((imgDim[0] / step) * (imgDim[1] / step))
+    traindataPath = os.path.join(trainDir, '2D512NonOverLapTrain.h5')
+    validdataPath = os.path.join(trainDir, '2D512NonOverLapValid.h5')
+    ind = 0
+    with h5py.File(traindataPath, 'w') as f:
+        for fInd in filenames:
+            print(fInd[:-7])
+            ind += 1
+            if ind > 3:
+            # subCT = []
+            # subMask = []
+                ct = nib.load(os.path.join(imgDir, os.path.basename(imgDir) + fInd)).get_data()
+                #     print(ct.shape)
+                # totSlice += ct.shape[2]
+                mask = nib.load(os.path.join(labDir, 'mask' + fInd)).get_data()
+                for axi in range(ct.shape[2]):
+                    # print(cor, sag, axi)
+                    img = ct[:, :, axi]
+                    subCT.append(img)
+                    # print(np.shape(subCT))
+                    msk = mask[:, :, axi]
+                    subMask.append(msk)
+                # break
+        f['img'] = subCT
+        f['msk'] = subMask
 

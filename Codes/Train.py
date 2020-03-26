@@ -9,10 +9,15 @@ import torch
 import torch.nn as nn
 from torch.utils import data
 import torch.optim as optim
+# from torchvision import transforms
+from torchvision.transforms import transforms
 from model2D import UNet, weights_init
 import time
 import pickle
 import matplotlib.pyplot as plt
+import random
+
+torch.manual_seed(101)
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda:0" if use_cuda else "cpu")
@@ -20,75 +25,149 @@ device = torch.device("cuda:0" if use_cuda else "cpu")
 dataDir = r'/media/banikr2/DATA/SpleenCTSegmentation'
 projectDir = r'/home/banikr2/PycharmProjects/SpleenCT3D_segmentation'
 modelDir = r'/media/banikr2/DATA/banikr_D_drive/model'
-dataPath = os.path.join(dataDir, 'SpleenData2D.h5')
-print(dataPath)
-F = h5py.File(dataPath, 'r')
-# print(F.keys()) #['img', 'mask']
-CT = F['img']
-Mask = F['mask']
-# def getSWN(img, x, y):  # soft window normalization
-#     #         x = 10;y=10
-#     L = gauss(40, x)
-#     W = gauss(200, y)
-#     #         print(L, W)
-#     W = abs(W)
-#     maxThr = L + W
-#     minThr = L - W
-#     img[img > maxThr] = maxThr
-#     img[img < minThr] = minThr
-#     img = 255 * ((img - minThr) / (maxThr - minThr))
-#     return img
-#
-# # print(CT.shape), print(Mask.shape) #(30, 1000, 128, 128, 3)
+traindataPath = os.path.join(dataDir, 'SpleenTilesNonOverLapTrain.h5')
+validdataPath = os.path.join(dataDir, 'SpleenTilesNonOverLapValid.h5')
+print(traindataPath, validdataPath)
+F = h5py.File(traindataPath, 'r')
+print(F.keys()) #['img', 'mask']
+trainCT = F['img']
+trainMask = F['msk']
+print(trainCT.shape), print(trainMask.shape) #(13180, 256, 256)
+G = h5py.File(validdataPath, 'r')
+print(G.keys())
+validCT = G['img']
+validMask = G['msk']
+print(validCT.shape), print(validMask.shape) #(1936, 256, 256)
 # img = np.array(CT[0, 0, :, :, :])
 # print(img.shape, img.dtype)
 # # img = getSWN(img, 10, 10)
 # print(type(img), img.dtype)
 # # img = np.concatenate((img[:,:,np.newaxis], img[:, :, np.newaxis], img[:, :, np.newaxis]), axis=2)
 # # img = np.transpose(img, (2, 0, 1))
-# img = Image.fromarray(np.uint8(img))
-# print(np.shape(img))
-# img.show()
-trainCT = CT[0:27, :, :, :, :]
-trainMask = Mask[0:27, :, :, :, :]
-validCT = CT[27:, :, :, :, :]
-validMask = Mask[27:, :, :, :, :]
-print(trainCT.shape, trainMask.shape, validCT.shape, validMask.shape)
-trainCT = np.transpose(trainCT, (0, 1, 4, 2, 3))
-trainCT = trainCT.reshape(-1, 128, 128)
-trainMask = np.transpose(trainMask, (0, 1, 4, 2, 3))
-trainMask = trainMask.reshape(-1, 128, 128)
-validCT = np.transpose(validCT, (0, 1, 4, 2, 3))
-validCT = validCT.reshape(-1, 128, 128)
-validMask = np.transpose(validMask, (0, 1, 4, 2, 3))
-validMask = validMask.reshape(-1, 128, 128)
-print(trainCT.shape, trainMask.shape, validCT.shape, validMask.shape)
-#(81000, 128, 128) (81000, 128, 128) (9000, 128, 128) (9000, 128, 128)
+# if __name__ != '__main__':
+#     breakwhen = 0
+#     # spleensum = np.array([])
+#     for i in range(CT.shape[0]):
+#         breakwhen += 1
+#         # spleensum = np.append(spleensum, np.sum(Mask[i,:,:]))
+#         if np.sum(Mask[i, :, :]) > 1000:
+#             break
+#     print(breakwhen)
+#     img = Image.fromarray(CT[5070, :, :])
+#     msk = Mask[5070, :, :]
+#     msk = Image.fromarray(np.uint8(255*msk))#.convert('1')
+#     # msk = ToTensor()(msk)
+#     # print(msk.std())
+#     # print(msk.max(), msk.min())
+#     # # print(np.shape(img))
+#     # # print(msk.max())
+#
+#     XForm = transforms.RandomHorizontalFlip()
+#     imgxf = XForm(img)
+#     img.show()
+#     msk.show()
+#     imgxf.show()
+#     # mskxf.show()
+#     plt.imshow(Mask[5070, :, :], cmap='gray')
+#     plt.show()
+#     trainCT = CT[0:15116-1132, :, :]
+#     trainMask = Mask[0:15116-1132, :, :]
+#     validCT = CT[15116-1132:, :, :]
+#     validMask = Mask[15116-1132:, :, :]
+#     print(trainCT.shape, trainMask.shape, validCT.shape, validMask.shape)
 
+#     newTrainCT = []
+#     newTrainMask = []
+#     uselessCT = []
+#     uselessMask = []
+#
+#     for i in range(trainCT.shape[0]):
+#         if np.sum(trainMask[i, :, :]) > 0:
+#             newTrainMask.append(trainMask[i, :, :])
+#             newTrainCT.append(trainCT[i, :, :])
+#         else:
+#             uselessCT.append(trainCT[i, :, :])
+#             uselessMask.append(trainMask[i, :, :])
+#
+#     newTrainCT = np.array(newTrainCT)
+#     newTrainMask = np.array(newTrainMask)
+#     print(newTrainMask.shape, newTrainCT.shape) #(1204, 256, 256)
+#     print(np.shape(uselessCT), np.shape(uselessMask)) #(12780, 256, 256)
+#
+#     randomUseless = random.sample(range(0, 12780), 4000)
+#     # print(randomUseless)
+#
+#     newUselessCT = []
+#     newUselessMask = []
+#     uselessCT = np.array(uselessCT)
+#     uselessMask = np.array(uselessMask)
+#     for x in randomUseless:
+#         # j = uselessCT[x, :, :]
+#         newUselessCT.append(uselessCT[x, :, :])
+#         newUselessMask.append(uselessMask[x, :, :])
+#     newUselessCT = np.array(newUselessCT)
+#     newUselessMask = np.array(newUselessMask)
+#     print(newUselessCT.shape, newUselessMask.shape)
+#
+#     trainCT = np.append(newTrainCT, newUselessCT, axis=0)#.unsqueeze(1)
+#     trainMask = np.append(newTrainMask, newUselessMask, axis=0)#.unsqueeze(1)
+#     print("finally: ", trainCT.shape, trainMask.shape)
+#
+#     xForm = transforms.Compose([transforms.RandomHorizontalFlip(),
+#                               transforms.RandomVerticalFlip(),
+#                               transforms.RandomAffine(20),
+#                               transforms.ToTensor()])
+#
+#     trainSet = SpleenDataset(trainCT, trainMask, transform=xForm) #works for None type also #validation ok #test ok #train ok
+#
+#      #torch.Size([1, 128, 128]) torch.Size([1, 128, 128]) #torch.Size([1, 1, 256, 256])
+#
+#     validSet = SpleenDataset(validCT, validMask, transform=None)
+#     img, mask = next(iter(validSet))
+#
+#     print(img.max(), mask.max())
+#     print(img.shape, mask.shape)
 tBatchSize = 20
 vBatchSize = 20
 max_epoch = 100
 lr = 0.0001
-
-trainSet = SpleenDataset(trainCT, trainMask)
-# img, mask = next(iter(trainSet))
-# print(img.shape, mask.shape) #torch.Size([1, 128, 128]) torch.Size([1, 128, 128])
+trainSet = SpleenDataset(validCT, validMask)
+img, mask = next(iter(validSet))
+print(img.max(), img.min(), mask.max(), mask.min())
 validSet = SpleenDataset(validCT, validMask)
 trainLoader = data.DataLoader(trainSet, batch_size=tBatchSize, shuffle=True, num_workers=4)
+
+img, mask = next(iter(trainSet))
+print(img.max(), img.min(), mask.max(), mask.min())
 validLoader = data.DataLoader(validSet, batch_size=vBatchSize, shuffle=False, num_workers=4)
+if __name__ != '__main__':
+    # trainCT = CT[0:27, :, :, :, :]
+    # trainMask = Mask[0:27, :, :, :, :]
+    # validCT = CT[27:, :, :, :, :]
+    # validMask = Mask[27:, :, :, :, :]
 
-img, mask = next(iter(validLoader))
-print(img.shape, mask.shape) #torch.Size([20, 1, 128, 128]) torch.Size([20, 1, 128, 128])
+    # trainCT = np.transpose(trainCT, (0, 1, 4, 2, 3))
+    # trainCT = trainCT.reshape(-1, 128, 128)
+    # trainMask = np.transpose(trainMask, (0, 1, 4, 2, 3))
+    # trainMask = trainMask.reshape(-1, 128, 128)
+    # validCT = np.transpose(validCT, (0, 1, 4, 2, 3))
+    # validCT = validCT.reshape(-1, 128, 128)
+    # validMask = np.transpose(validMask, (0, 1, 4, 2, 3))
+    # validMask = validMask.reshape(-1, 128, 128)
+    # print(trainCT.shape, trainMask.shape, validCT.shape, validMask.shape)
+    #(81000, 128, 128) (81000, 128, 128) (9000, 128, 128) (9000, 128, 128)
+    # img, mask = next(iter(trainSet))
 
 
-Net = UNet(in_dim=1, out_dim=1, num_filters=64).to(device)
-Net.apply(weights_init)
-Optimizer = optim.Adam(Net.parameters(), lr=lr)
+    img, mask = next(iter(validLoader))
+    print(img.shape, mask.shape) #torch.Size([20, 1, 128, 128]) torch.Size([20, 1, 128, 128])
 
+    Net = UNet(in_dim=1, out_dim=1, num_filters=64).to(device)
+    Net.apply(weights_init)
+    Optimizer = optim.Adam(Net.parameters(), lr=lr)
 # weight = torch.tensor(10.)
 # Criterion = nn.BCEWithLogitsLoss(pos_weight=weight)
 # Criterion = dice_loss()
-
 # epoch = 11
 #
 # img = img.float().to(device)
@@ -106,12 +185,10 @@ Optimizer = optim.Adam(Net.parameters(), lr=lr)
     # print(out)
     # loss = Criterion(out, mask)
     # print(loss)
-if __name__ == '__main__':
+if __name__ != '__main__':
     TIME_STAMP = time.strftime('%Y-%m-%d-%H-%M-%S')
     print(TIME_STAMP)
-
     FILEPATH_MODEL_LOAD = None
-
     """%%%%%%% Saving Criteria of Model %%%%%%%"""
     if FILEPATH_MODEL_LOAD is not None: #Only needed for loading models or transfer learning
         train_states = torch.load(FILEPATH_MODEL_LOAD)
