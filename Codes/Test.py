@@ -1,6 +1,6 @@
 import torch
 from torch.utils import data
-from Utility import SpleenDataset, getLargestCC, calculate_nifti_all_labels_dice_score
+from Utility import SpleenDataset, getLargestCC
 from model2D import UNet
 import os
 import numpy as np
@@ -99,7 +99,7 @@ if __name__ == '__main__':
         dsc = (2*commonArea.sum())/(result.sum()+mask.sum())
         diceList = np.append(diceList, dsc)
         print("Dice score", fInd, ":", dsc)
-        
+
     print(np.mean(diceList))
     print(np.median(diceList))
     print(np.std(diceList))
